@@ -51,8 +51,8 @@ namespace SAE.J2534
 {
     public partial class API : Common.UnmanagedDisposable
     {
-        private object sync = new object();
-        private IntPtr pLibrary;
+        private readonly object sync = new object();
+        private readonly IntPtr pLibrary;
         internal API_Signature APISignature { get; }
         internal API(string FileName)
         {
@@ -133,7 +133,7 @@ namespace SAE.J2534
                     if (Result == ResultCode.STATUS_NOERROR)
                         return hErrorDescription.ToString();
                     else
-                        return $"GetLastError failed with result: {Result.ToString()}";
+                        return $"GetLastError failed with result: {Result}";
                 }
             }
         }
