@@ -48,15 +48,55 @@ using System;
 
 namespace SAE.J2534
 {
+    /// <summary>
+    /// Message transmit flags
+    /// </summary>
     [Flags]
     public enum TxFlag
     {
-        NONE = 0x00000000,
-        SCI_TX_VOLTAGE = 0x00800000,
-        SCI_MODE = 0x00400000,
-        WAIT_P3_MIN_ONLY = 0x00000200,
-        CAN_29BIT_ID = 0x00000100,
-        ISO15765_ADDR_TYPE = 0x00000080,
-        ISO15765_FRAME_PAD = 0x00000040
+        /// <summary>No flag</summary>
+        NONE                = 0x0,
+
+        /// <summary>
+        /// SCI programming voltage
+        /// <para>0 = no voltage after message transmit</para>
+        /// <para>1 = apply 20V after message transmit</para>
+        /// </summary>
+        SCI_TX_VOLTAGE      = 0x800000,
+
+        /// <summary>
+        /// SCI transmit mode
+        /// <para>0 = Transmit using SCI Full duplex mode</para>
+        /// <para>1 = Transmit using SCI Half duplex mode</para>
+        /// </summary>
+        SCI_MODE            = 0x400000,
+
+        /// <summary>
+        /// Modified message timing for ISO 14230-used to decrease programming time if application knows only one response will be received
+        /// <para>0 = Interface message timing as specified in ISO 14230</para>
+        /// <para>1 = After a response is received for a physical request, the wait time shall be reduced to P3_MIN. Does not affect timing on Responses to functional requests</para>
+        /// </summary>
+        WAIT_P3_MIN_ONLY    = 0x200,
+
+        /// <summary>
+        /// The can 29 bit identifier
+        /// <para>0 = 11-bit</para>
+        /// <para>1 = 29-bit</para>
+        /// </summary>
+        CAN_29BIT_ID        = 0x100,
+
+        /// <summary>
+        /// ISO 15765-2 Addressing Method
+        /// <para>0 = no extended address</para>
+        /// <para>1 =extended address is first byte after the CAN ID</para>
+        /// </summary>
+        ISO15765_ADDR_TYPE  = 0x80,
+
+        /// <summary>
+        /// ISO 15765-2 Frame Padding
+        /// <para>0 = no padding</para>
+        /// <para>1 = pad all flow controlled messages to a full CAN frame using zeroes</para>
+        /// </summary>
+        ISO15765_FRAME_PAD  = 0x40,
     }
 }

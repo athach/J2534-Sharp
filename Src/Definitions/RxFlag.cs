@@ -48,16 +48,62 @@ using System;
 
 namespace SAE.J2534
 {
+    /// <summary>
+    /// Message receive flags
+    /// </summary>
     [Flags]
     public enum RxFlag
     {
-        NONE = 0x00000000,
-        TX_MSG_TYPE = 0x00000001,
-        START_OF_MESSAGE = 0x00000002,
-        RX_BREAK = 0x00000004,
-        TX_INDICATION = 0x00000008,
-        ISO15765_PADDING_ERROR = 0x00000010,
-        ISO15765_EXT_ADDR = 0x00000080,
-        CAN_29BIT_ID = 0x00000100
+        /// <summary>No flag</summary>
+        NONE                    = 0x0,
+
+        /// <summary>
+        /// Receive Indication/Transmit Loopback
+        /// <para>0 = received i.e. this message was transmitted on the bus by another node</para>
+        /// <para>1 = transmitted i.e. this is the echo of the message transmitted by the PassThru device</para>
+        /// </summary>
+        TX_MSG_TYPE             = 0x1,
+
+        /// <summary>
+        /// Indicates the reception of the first byte of an ISO9141 or ISO14230 message or first frame of an ISO15765 multiframe message
+        /// <para>0 = Not a start of message indication </para>
+        /// <para>1 = First byte or frame received</para>
+        /// </summary>
+        START_OF_MESSAGE        = 0x2,
+
+        /// <summary>
+        /// Break indication received – SAE J2610 and SAE J1850 VPW only
+        /// <para>0 = No break received</para>
+        /// <para>1 = Break received</para>
+        /// </summary>
+        RX_BREAK                = 0x4,
+
+        /// <summary>
+        /// ISO 15765 TxDone indicationCANID and extended address, if present, shall be included in the message structure
+        /// <para>0 = No TxDone </para>
+        /// <para>1 = TxDone</para>
+        /// </summary>
+        TX_INDICATION           = 0x8,
+
+        /// <summary>
+        /// For ProtocolID ISO 15765 a CAN frame was received with less than 8 data bytes
+        /// <para>0 = No Error </para>
+        /// <para>1 = Padding Error</para>
+        /// </summary>
+        ISO15765_PADDING_ERROR  = 0x10,
+
+        /// <summary>
+        /// ISO 15765-2 Addressing Method
+        /// <para>0 = no extended address</para>
+        /// <para>1 = extended address is first byte after the CAN ID</para>
+        /// </summary>
+        ISO15765_ADDR_TYPE      = 0x80,
+
+        /// <summary>
+        /// CAN ID Type for CAN and ISO 15765
+        /// <para>0 = 11-bit Identifier </para>
+        /// <para>1 = 29-bit Identifier</para>
+        /// </summary>
+        CAN_29BIT_ID            = 0x100
     }
 }
