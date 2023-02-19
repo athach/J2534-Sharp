@@ -24,14 +24,18 @@ namespace SAE.J2534
 {
     public class APIInfo
     {
-        public string Name { get; }
-        public string Filename { get; }
-        public string Details { get; }
-        public APIInfo(string Name, string Filename, string Details)
+        public string Name                  { get; }
+        public string Filename              { get; }
+        public string Details               { get; }
+        public string Vendor                { get; }
+        public string ConfigApplication     { get; }
+        public APIInfo(string Name, string Filename, string Details, string Vendor, string ConfigApplication)
         {
             this.Name = Name;
             this.Filename = Filename;
             this.Details = Details;
+            this.Vendor = Vendor;
+            this.ConfigApplication = ConfigApplication;
         }
     }
 }

@@ -99,13 +99,6 @@ namespace SAE.J2534
 
                 StringBuilder DetailsBuilder = new StringBuilder();
 
-                var Vendor = (string)deviceKey.GetValue("Vendor", "");
-                if (!String.IsNullOrWhiteSpace(Vendor))
-                    DetailsBuilder.AppendLine($"Vendor: {Vendor}");
-                var ConfigApplication = (string)deviceKey.GetValue("ConfigApplication", "");
-                if (!String.IsNullOrWhiteSpace(ConfigApplication))
-                    DetailsBuilder.AppendLine($"Configuration Application: {ConfigApplication}");
-
                 foreach (var Option in DetailOptions)
                 {
                     if (((int)deviceKey.GetValue(Option.Key, 0)) != 0)
@@ -116,7 +109,10 @@ namespace SAE.J2534
 
                 yield return new APIInfo((string)deviceKey.GetValue("Name", ""),
                                          (string)deviceKey.GetValue("FunctionLibrary", ""),
-                                         DetailsBuilder.ToString());
+                                         DetailsBuilder.ToString(),
+                                         (string)deviceKey.GetValue("Vendor", ""),
+                                         (string)deviceKey.GetValue("ConfigApplication", "")
+                                         );
             }
         }
         public static void StaticDispose()
