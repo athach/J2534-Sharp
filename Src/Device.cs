@@ -102,6 +102,7 @@ namespace SAE.J2534
         /// <param name="ProtocolID">Connection protocol</param>
         /// <param name="Baud">Connection baud-rate</param>
         /// <param name="ConnectFlags">Connection flags</param>
+        /// <param name="ChannelLevelSync">Channel level synchronization</param>
         /// <returns>A connected J2534Channel object</returns>
         public Channel GetChannel(Protocol ProtocolID, Baud Baud, ConnectFlag ConnectFlags, bool ChannelLevelSync = false)
         {

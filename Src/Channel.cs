@@ -188,7 +188,7 @@ namespace SAE.J2534
         /// <summary>
         /// Stops automated transmission of a periodic message.
         /// </summary>
-        /// <param name="Index"Message index>Message index</param>
+        /// <param name="MessageId">Message ID</param>
         public void StopPeriodicMsg(int MessageId)
         {
             lock (sync)
@@ -294,7 +294,7 @@ namespace SAE.J2534
         /// <summary>
         /// Gets a list of configuration parameters for the channel
         /// </summary>
-        /// <param name="Parameter">List of parameters to get</param>
+        /// <param name="SConfig">List of parameters to get</param>
         /// <returns>Parameter list</returns>
         public SConfig[] GetConfig(SConfig[] SConfig)
         {
@@ -310,7 +310,7 @@ namespace SAE.J2534
         /// <summary>
         /// Sets a list of configuration parameters for the channel
         /// </summary>
-        /// <param name="Parameter">List of parameters to set</param>
+        /// <param name="SConfig">List of parameters to set</param>
         public void SetConfig(SConfig[] SConfig)
         {
             using (HeapSConfigArray hSConfigList = new HeapSConfigArray(SConfig))
