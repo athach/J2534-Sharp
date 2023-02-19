@@ -31,7 +31,7 @@ namespace SAE.J2534
 {
     public class APIFactory : Common.ManagedDisposable
     {
-        private static Dictionary<string, API> Cache = new Dictionary<string, API>();
+        private static readonly Dictionary<string, API> Cache = new Dictionary<string, API>();
         /// <summary>
         /// Loads an API, verifies its signature and returns the managed wrapper 
         /// </summary>
@@ -67,17 +67,19 @@ namespace SAE.J2534
         /// <returns>APIInfo enumerable</returns>
         public static IEnumerable<APIInfo> GetAPIinfo()
         {
-            Dictionary<string, string> DetailOptions = new Dictionary<string, string>();
-            DetailOptions.Add("CAN", "CAN Bus");
-            DetailOptions.Add("ISO15765", "ISO15765");
-            DetailOptions.Add("J1850PWM", "J1850PWM");
-            DetailOptions.Add("J1850VPW", "J1850VPW");
-            DetailOptions.Add("ISO9141", "ISO9141");
-            DetailOptions.Add("ISO14230", "ISO14230");
-            DetailOptions.Add("SCI_A_ENGINE", "SCI-A Engine");
-            DetailOptions.Add("SCI_A_TRANS", "SCI-A Transmission");
-            DetailOptions.Add("SCI_B_ENGINE", "SCI-B Engine");
-            DetailOptions.Add("SCI_B_TRANS", "SCI-B Transmission");
+            Dictionary<string, string> DetailOptions = new Dictionary<string, string>
+            {
+                { "CAN", "CAN Bus" },
+                { "ISO15765", "ISO15765" },
+                { "J1850PWM", "J1850PWM" },
+                { "J1850VPW", "J1850VPW" },
+                { "ISO9141", "ISO9141" },
+                { "ISO14230", "ISO14230" },
+                { "SCI_A_ENGINE", "SCI-A Engine" },
+                { "SCI_A_TRANS", "SCI-A Transmission" },
+                { "SCI_B_ENGINE", "SCI-B Engine" },
+                { "SCI_B_TRANS", "SCI-B Transmission" }
+            };
 
             const string PASSTHRU_REGISTRY_PATH = @"Software\PassThruSupport.04.04";
             const string PASSTHRU_REGISTRY_PATH_6432 = @"Software\Wow6432Node\PassThruSupport.04.04";
