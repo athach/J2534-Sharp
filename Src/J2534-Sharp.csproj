@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SAE.J2534</RootNamespace>
     <AssemblyName>J2534-Sharp</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -45,7 +45,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>..\bin\Release\J2534-Sharp.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Release\J2534-Sharp.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
