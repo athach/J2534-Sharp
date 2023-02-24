@@ -49,95 +49,132 @@ namespace SAE.J2534
 {
     public enum Parameter
     {
-        DATA_RATE = 0x01,
-        LOOP_BACK = 0x03,
-        NODE_ADDRESS = 0x04,
-        NETWORK_LINE = 0x05,
-        P1_MIN = 0x06,
-        P1_MAX = 0x07,
-        P2_MIN = 0x08,
-        P2_MAX = 0x09,
-        P3_MIN = 0x0A,
-        P3_MAX = 0x0B,
-        P4_MIN = 0x0C,
-        P4_MAX = 0x0D,
-        W0 = 0x19,
-        W1 = 0x0E,
-        W2 = 0x0F,
-        W3 = 0x10,
-        W4 = 0x11,
-        W5 = 0x12,
-        TIDLE = 0x13,
-        TINIL = 0x14,
-        TWUP = 0x15,
-        PARITY = 0x16,
-        BIT_SAMPLE_POINT = 0x17,
-        SYNC_JUMP_WIDTH = 0x18,
-        T1_MAX = 0x1A,
-        T2_MAX = 0x1B,
-        T3_MAX = 0x24,
-        T4_MAX = 0x1C,
-        T5_MAX = 0x1D,
-        ISO15765_BS = 0x1E,
-        ISO15765_STMIN = 0x1F,
-        DATA_BITS = 0x20,
-        FIVE_BAUD_MOD = 0x21,
-        BS_TX = 0x22,
-        STMIN_TX = 0x23,
-        ISO15765_WFT_MAX = 0x25,
+        DATA_RATE                   = 0x01,
+        LOOP_BACK                   = 0x03,
+        NODE_ADDRESS                = 0x04,
+        NETWORK_LINE                = 0x05,
+        P1_MIN                      = 0x06,
+        P1_MAX                      = 0x07,
+        P2_MIN                      = 0x08,
+        P2_MAX                      = 0x09,
+        P3_MIN                      = 0x0A,
+        P3_MAX                      = 0x0B,
+        P4_MIN                      = 0x0C,
+        P4_MAX                      = 0x0D,
+        W0                          = 0x19,
+        W1                          = 0x0E,
+        W2                          = 0x0F,
+        W3                          = 0x10,
+        W4                          = 0x11,
+        W5                          = 0x12,
+        TIDLE                       = 0x13,
+        TINIL                       = 0x14,
+        TWUP                        = 0x15,
+        PARITY                      = 0x16,
+        BIT_SAMPLE_POINT            = 0x17,
+        SYNC_JUMP_WIDTH             = 0x18,
+        T1_MAX                      = 0x1A,
+        T2_MAX                      = 0x1B,
+        T3_MAX                      = 0x24,
+        T4_MAX                      = 0x1C,
+        T5_MAX                      = 0x1D,
+        ISO15765_BS                 = 0x1E,
+        ISO15765_STMIN              = 0x1F,
+        DATA_BITS                   = 0x20,
+        FIVE_BAUD_MOD               = 0x21,
+        BS_TX                       = 0x22,
+        STMIN_TX                    = 0x23,
+        ISO15765_WFT_MAX            = 0x25,
 
         //J2534-2
-        CAN_MIXED_FORMAT = 0x00008000,
-        J1962_PINS = 0x00008001,
-        SW_CAN_HS_DATA_RATE = 0x00008010,
-        SW_CAN_SPEEDCHANGE_ENABLE = 0x00008011,
-        SW_CAN_RES_SWITCH = 0x00008012,
-        ACTIVE_CHANNELS = 0x00008020,
-        SAMPLE_RATE = 0x00008021,
-        SAMPLES_PER_READING = 0x00008022,
-        READINGS_PER_MSG = 0x00008023,
-        AVERAGING_METHOD = 0x00008024,
-        SAMPLE_RESOLUTION = 0x00008025,
-        INPUT_RANGE_LOW = 0x00008026,
-        INPUT_RANGE_HIGH = 0x00008027,
-        UEB_T0_MIN = 0x00008028,
-        UEB_T1_MAX = 0x00008029,
-        UEB_T2_MAX = 0x0000802A,
-        UEB_T3_MAX = 0x0000802B,
-        UEB_T4_MIN = 0x0000802C,
-        UEB_T5_MAX = 0x0000802D,
-        UEB_T6_MAX = 0x0000802E,
-        UEB_T7_MIN = 0x0000802F,
-        UEB_T7_MAX = 0x00008030,
-        UEB_T9_MIN = 0x00008031,
-        J1939_PINS = 0x0000803D,
-        J1708_PINS = 0x0000803E,
-        J1939_T1 = 0x0000803F,
-        J1939_T2 = 0x00008040,
-        J1939_T3 = 0x00008041,
-        J1939_T4 = 0x00008042,
-        J1939_BRDCST_MIN_DELAY = 0x00008043,
-        TP2_0_T_BR_INT = 0x00008044,
-        TP2_0_T_E = 0x00008045,
-        TP2_0_MNTC = 0x00008046,
-        TP2_0_T_CTA = 0x00008047,
-        TP2_0_MNCT = 0x00008048,
-        TP2_0_MNTB = 0x00008049,
-        TP2_0_MNT = 0x0000804A,
-        TP2_0_T_WAIT = 0x0000804B,
-        TP2_0_T1 = 0x0000804C,
-        TP2_0_T3 = 0x0000804D,
-        TP2_0_IDENTIFER = 0x0000804E,
-        TP2_0_RXIDPASSIVE = 0x0000804F,
-        FD_CAN_DATA_PHASE_RATE = 0x0000805C,
-        FD_ISO15765_TX_DATA_LENGTH = 0x0000805D,
-        HS_CAN_TERMINATION = 0x0000805E,
-        N_CR_MAX = 0x0000805F,
-        ISO15765_PAD_VALUE = 0x00008060,
 
-        ISO15765_SIMULTANEOUS = 0x10000000, //Drewtech
-        DT_ISO15765_PAD_BYTE = 0x10000001,  //Drewtech
-        ADC_READINGS_PER_SECOND = 0x10000,  //Drewtech
-        ADC_READINGS_PER_SAMPLE = 0x20000   //Drewtech
+        /// <summary>
+        /// Supported by ISO15765_FD_PS. CAN_MIXED_FORMAT behaves as defined in SAE J2534-2. This implementation allows usage of CAN_FD_PS on an ISO15765_FD_PS channel.
+        /// </summary>
+        CAN_MIXED_FORMAT            = 0x00008000,
+        J1962_PINS                  = 0x00008001,
+        SW_CAN_HS_DATA_RATE         = 0x00008010,
+        SW_CAN_SPEEDCHANGE_ENABLE   = 0x00008011,
+        SW_CAN_RES_SWITCH           = 0x00008012,
+        ACTIVE_CHANNELS             = 0x00008020,
+        SAMPLE_RATE                 = 0x00008021,
+        SAMPLES_PER_READING         = 0x00008022,
+        READINGS_PER_MSG            = 0x00008023,
+        AVERAGING_METHOD            = 0x00008024,
+        SAMPLE_RESOLUTION           = 0x00008025,
+        INPUT_RANGE_LOW             = 0x00008026,
+        INPUT_RANGE_HIGH            = 0x00008027,
+        UEB_T0_MIN                  = 0x00008028,
+        UEB_T1_MAX                  = 0x00008029,
+        UEB_T2_MAX                  = 0x0000802A,
+        UEB_T3_MAX                  = 0x0000802B,
+        UEB_T4_MIN                  = 0x0000802C,
+        UEB_T5_MAX                  = 0x0000802D,
+        UEB_T6_MAX                  = 0x0000802E,
+        UEB_T7_MIN                  = 0x0000802F,
+        UEB_T7_MAX                  = 0x00008030,
+        UEB_T9_MIN                  = 0x00008031,
+        J1939_PINS                  = 0x0000803D,
+        J1708_PINS                  = 0x0000803E,
+        J1939_T1                    = 0x0000803F,
+        J1939_T2                    = 0x00008040,
+        J1939_T3                    = 0x00008041,
+        J1939_T4                    = 0x00008042,
+        J1939_BRDCST_MIN_DELAY      = 0x00008043,
+        TP2_0_T_BR_INT              = 0x00008044,
+        TP2_0_T_E                   = 0x00008045,
+        TP2_0_MNTC                  = 0x00008046,
+        TP2_0_T_CTA                 = 0x00008047,
+        TP2_0_MNCT                  = 0x00008048,
+        TP2_0_MNTB                  = 0x00008049,
+        TP2_0_MNT                   = 0x0000804A,
+        TP2_0_T_WAIT                = 0x0000804B,
+        TP2_0_T1                    = 0x0000804C,
+        TP2_0_T3                    = 0x0000804D,
+        TP2_0_IDENTIFER             = 0x0000804E,
+        TP2_0_RXIDPASSIVE           = 0x0000804F,
+        FD_CAN_DATA_PHASE_RATE      = 0x0000805C,
+        FD_ISO15765_TX_DATA_LENGTH  = 0x0000805D,
+        HS_CAN_TERMINATION          = 0x0000805E,
+        N_CR_MAX                    = 0x0000805F,
+        ISO15765_PAD_VALUE          = 0x00008060,
+
+        // Drewtech
+
+        ISO15765_SIMULTANEOUS       = 0x10000000, 
+        DT_ISO15765_PAD_BYTE        = 0x10000001,
+        ADC_READINGS_PER_SECOND     = 0x10000,
+        ADC_READINGS_PER_SAMPLE     = 0x20000, 
+
+        // GMW17753        
+
+        /// <summary>
+        /// Specifies the baud rate for the data phase of a CAN FD frame in bits per second (bps). To minimize the possibility of Bus Errors, the Data phase rate should be set prior to setting J1962_PINS.
+        /// </summary>
+        CAN_FD_DATA_PHASE_RATE      = 0x10010,
+        
+        /// <summary>
+        /// The termination resistor shall be applied to across the DLC pins specified by J1962_PINS. To minimize the possibility of Bus Errors termination should be set prior to setting J1962_PINS. 
+        /// <para>>0 = no termination (Default)</para>
+        /// <para>>3 = 120 Ω termination</para>
+        /// </summary>
+        CAN_FD_TERMINATION          = 0x10012,
+        
+        /// <summary>
+        /// Switches between Bosch CAN FD and ISO CAN FD definitions. To minimize the possibility of Bus Errors, CAN FD type should be set prior to setting J1962_PINS. 
+        /// <para>>0 = ISO CAN FD (Default)</para>
+        /// <para>>1 = Bosch CAN FD</para>
+        /// </summary>
+        CAN_FD_TYPE                 = 0x10013,
+        
+        /// <summary>
+        /// Supported by ISO15765_FD_PS only. The frame size the Pass-Thru Interface shall use when transmitting a CAN FD formatted segmented message. Transmit flag CAN_FD_FORMAT determines the frame format of the message. For the CAN 2.0 format, the frame size is always 8 bytes.8 bytes (default), 12, 16, 20, 24, 32, 48, 64 bytes
+        /// </summary>
+        CAN_FD_TC_DATA_LENGTH       = 0x10011,
+        
+        /// <summary>
+        /// Supported by ISO15765_FD_PS. The maximum time between consecutive frames of a ISO 15765 Message that is being received. If this time limit is detected, the Pass-Thru Device shall discard the message. Resolution: 1 µs. Default value: 150 000.
+        /// </summary>
+        N_CR_MAX_GMW17753           = 0x10014,
     }
 }

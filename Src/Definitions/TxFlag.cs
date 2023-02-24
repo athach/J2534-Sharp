@@ -98,5 +98,20 @@ namespace SAE.J2534
         /// <para>1 = pad all flow controlled messages to a full CAN frame using zeroes</para>
         /// </summary>
         ISO15765_FRAME_PAD  = 0x40,
+
+        // GMW17753
+
+        /// <summary>
+        /// 0 = The message shall be transmitted with the data phase at the arbitration speed. 
+        /// <para>1 = The message shall be transmitted with the data phase at the CAN_FD_DATA_PHASE_RATE.</para>
+        /// <para>This flag will be ignored unless CAN_FD_FORMAT flag is set to 1</para>
+        /// </summary>
+        CAN_FD_PS           = 0x1000000,
+
+        /// <summary>
+        /// 0 = The message shall be transmitted the all using the CAN 2.0 format.
+        /// <para>1 = The message shall be transmitted the all using the CAN FD format</para>
+        /// </summary>
+        CAN_FD_FORMAT       = 0x2000000,
     }
 }

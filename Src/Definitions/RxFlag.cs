@@ -66,7 +66,7 @@ namespace SAE.J2534
 
         /// <summary>
         /// Indicates the reception of the first byte of an ISO9141 or ISO14230 message or first frame of an ISO15765 multiframe message
-        /// <para>0 = Not a start of message indication </para>
+        /// <para>0 = Not a start of message indication</para>
         /// <para>1 = First byte or frame received</para>
         /// </summary>
         START_OF_MESSAGE        = 0x2,
@@ -80,14 +80,14 @@ namespace SAE.J2534
 
         /// <summary>
         /// ISO 15765 TxDone indicationCANID and extended address, if present, shall be included in the message structure
-        /// <para>0 = No TxDone </para>
+        /// <para>0 = No TxDone</para>
         /// <para>1 = TxDone</para>
         /// </summary>
         TX_INDICATION           = 0x8,
 
         /// <summary>
         /// For ProtocolID ISO 15765 a CAN frame was received with less than 8 data bytes
-        /// <para>0 = No Error </para>
+        /// <para>0 = No Error</para>
         /// <para>1 = Padding Error</para>
         /// </summary>
         ISO15765_PADDING_ERROR  = 0x10,
@@ -101,9 +101,38 @@ namespace SAE.J2534
 
         /// <summary>
         /// CAN ID Type for CAN and ISO 15765
-        /// <para>0 = 11-bit Identifier </para>
+        /// <para>0 = 11-bit Identifier</para>
         /// <para>1 = 29-bit Identifier</para>
         /// </summary>
-        CAN_29BIT_ID            = 0x100
+        CAN_29BIT_ID            = 0x100,
+
+        // GMW17753
+        
+        /// <summary>
+        /// This flag reflects the value of the BRS bit of the last frame in the received message. It is possible to receive a Multi-Frame message where the BRS bit is different for some frames. This flag shall be zero (0) if CAN_FD_FORMAT is not set
+        /// <para>0 = The data phase of the last frame in the message was received at arbitration speed</para>
+        /// <para>1 = The data phase of the last frame in the message was received at the CAN FD data phase rate</para>
+        /// </summary>
+        CAN_FD_BRS              = 0x1000000,
+
+        /// <summary>
+        /// 0 = The message was received in CAN 2.0 format
+        /// <para>1 = The message was received in CAN FD format</para>
+        /// </summary>
+        CAN_FD_FORMAT           = 0x2000000,
+
+        /// <summary>
+        /// This flag reflects the value of the ESI bit of the message. This flag must be zero when CAN_FD_FORMAT is 0.
+        /// <para>0 = ESI bit is active in received CAN FD frame. The sender is in the Error Active State</para>
+        /// <para>1 = ESI bit is passive in received CAN FD frame. The sender is in the Error Passive State</para>
+        /// </summary>
+        CAN_FD_ESI              = 0x4000000,
+
+        /// <summary>
+        /// The Rx message length exceeded 4128 bytes of data and the Pass-Thru Interface has truncated the message. The remaining data bytes can be read from the extended Rx Buffer.
+        /// <para>0 = The entire message has been returned in the Data array</para>
+        /// <para>1 = 4128 bytes of the message have returned in the Data array the remaining bytes must be read from the Extended Data array</para>
+        /// </summary>
+        RX_MSG_TRUNCATED        = 0x8000000,
     }
 }

@@ -51,66 +51,74 @@ namespace SAE.J2534
     public enum Protocol
     {
         [Description("SAE J1850 VPW")]
-        J1850VPW = 0x01,
+        J1850VPW            = 0x1,
         [Description("SAE J1850 PWM")]
-        J1850PWM = 0x02,
+        J1850PWM            = 0x2,
         [Description("ISO 9141")]
-        ISO9141 = 0x03,
+        ISO9141             = 0x3,
         [Description("ISO 14229")]
-        ISO14230 = 0x04,
+        ISO14230            = 0x4,
         [Description("CAN")]
-        CAN = 0x05,
+        CAN                 = 0x5,
         [Description("ISO 15765")]
-        ISO15765 = 0x06,
+        ISO15765            = 0x6,
         [Description("SCI-A Engine")]
-        SCI_A_ENGINE = 0x07,
+        SCI_A_ENGINE        = 0x7,
         [Description("SCI-A Transmission")]
-        SCI_A_TRANS = 0x08,
+        SCI_A_TRANS         = 0x8,
         [Description("SCI-B Engine")]
-        SCI_B_ENGINE = 0x09,
+        SCI_B_ENGINE        = 0x9,
         [Description("SCI-B Transmission")]
-        SCI_B_TRANS = 0x0A,
+        SCI_B_TRANS         = 0xA,
 
         //J2534-2 Protocol definitions
-        J1850VPW_PS = 0x00008000,
-        J1850PWM_PS = 0x00008001,
-        ISO9141_PS = 0x00008002,
-        ISO14230_PS = 0x00008003,
-        CAN_PS = 0x00008004,
-        ISO15765_PS = 0x00008005,
-        J2610_PS = 0x00008006,
-        SW_ISO15765_PS = 0x00008007,
-        SW_CAN_PS = 0x00008008,
-        GM_UART_PS = 0x00008009,
-        UART_ECHO_BYTE_PS = 0x0000800A,
-        HONDA_DIAGH_PS = 0x0000800B,
-        J1939_PS = 0x0000800C,
-        J1708_PS = 0x0000800D,
-        TP2_0_PS = 0x0000800E,
-        FT_CAN_PS = 0x0000800F,
-        FT_ISO15765_PS = 0x00008010,
-        FD_CAN_PS = 0x00008011,
-        FD_ISO15765_PS = 0x00008012,
-        CAN_CH1 = 0x00009000,
-        J1850VPW_CH1 = 0x00009080,
-        J1850PWM_CH1 = 0x00009100,
-        ISO9141_CH1 = 0x00009180,
-        ISO14230_CH1 = 0x00009200,
-        ISO15765_CH1 = 0x00009280,
-        SW_CAN_CAN_CH1 = 0x00009300,
-        SW_CAN_ISO15765_CH1 = 0x00009380,
-        J2610_CH1 = 0x00009400,
-        FT_CAN_CH1 = 0x00009480,
-        FT_ISO15765_CH1 = 0x00009500,
-        GM_UART_CH1 = 0x00009580,
-        ECHO_BYTE_CH1 = 0x00009600,
-        HONDA_DIAGH_CH1 = 0x00009680,
-        J1939_CH1 = 0x00009700,
-        J1708_CH1 = 0x00009780,
-        TP2_0_CH1 = 0x00009800,
-        FD_CAN_CH1 = 0x00009880,
-        FD_ISO15765_CH1 = 0x00009900,
-        ANALOG_IN_1 = 0x0000C000,
+        J1850VPW_PS         = 0x8000,
+        J1850PWM_PS         = 0x8001,
+        ISO9141_PS          = 0x8002,
+        ISO14230_PS         = 0x8003,
+        CAN_PS              = 0x8004,
+        ISO15765_PS         = 0x8005,
+        J2610_PS            = 0x8006,
+        SW_ISO15765_PS      = 0x8007,
+        SW_CAN_PS           = 0x8008,
+        GM_UART_PS          = 0x8009,
+        UART_ECHO_BYTE_PS   = 0x800A,
+        HONDA_DIAGH_PS      = 0x800B,
+        J1939_PS            = 0x800C,
+        J1708_PS            = 0x800D,
+        TP2_0_PS            = 0x800E,
+        FT_CAN_PS           = 0x800F,
+        FT_ISO15765_PS      = 0x8010,
+        FD_CAN_PS           = 0x8011,
+        FD_ISO15765_PS      = 0x8012,
+        CAN_CH1             = 0x9000,
+        J1850VPW_CH1        = 0x9080,
+        J1850PWM_CH1        = 0x9100,
+        ISO9141_CH1         = 0x9180,
+        ISO14230_CH1        = 0x9200,
+        ISO15765_CH1        = 0x9280,
+        SW_CAN_CAN_CH1      = 0x9300,
+        SW_CAN_ISO15765_CH1 = 0x9380,
+        J2610_CH1           = 0x9400,
+        FT_CAN_CH1          = 0x9480,
+        FT_ISO15765_CH1     = 0x9500,
+        GM_UART_CH1         = 0x9580,
+        ECHO_BYTE_CH1       = 0x9600,
+        HONDA_DIAGH_CH1     = 0x9680,
+        J1939_CH1           = 0x9700,
+        J1708_CH1           = 0x9780,
+        TP2_0_CH1           = 0x9800,
+        FD_CAN_CH1          = 0x9880,
+        FD_ISO15765_CH1     = 0x9900,
+        ANALOG_IN_1         = 0xC000,
+
+        // GMW17753
+
+        /// <summary>GMW17753 ISO 15765</summary>
+        ISO15765_FD_PS = 0x1000C,
+
+        /// <summary>GMW17753 CAN FD</summary>
+        CAN_FD_PS = 0x1000D,
     }
     public static class ProtocolExtensions
     {
