@@ -74,7 +74,7 @@ namespace SAE.J2534
             {
                 lock (sync)
                 {
-                    CheckResult(PTOpen(String.IsNullOrWhiteSpace(DeviceName) ? IntPtr.Zero : (IntPtr)hDeviceName, (IntPtr)hDeviceID));
+                    CheckResult(PTOpen(Extensions.IsNullOrWhiteSpace(DeviceName) ? IntPtr.Zero : (IntPtr)hDeviceName, (IntPtr)hDeviceID));
                 }
                 var device = new Device(this, hDeviceName.ToString(), hDeviceID.Value, sync);
                 OnDisposing += device.Dispose;

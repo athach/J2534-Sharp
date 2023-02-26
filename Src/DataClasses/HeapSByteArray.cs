@@ -32,15 +32,15 @@ namespace SAE.J2534
         {
             Ptr = Marshal.AllocHGlobal(9);
             Length = 1;
-            Marshal.WriteIntPtr(Ptr, 4, IntPtr.Add(Ptr, 8));
-            Marshal.WriteByte(IntPtr.Add(Ptr, 8), Byte);
+            Marshal.WriteIntPtr(Ptr, 4, Extensions.IntPtr_Add(Ptr, 8));
+            Marshal.WriteByte(Extensions.IntPtr_Add(Ptr, 8), Byte);
         }
         public HeapSByteArray(byte[] SByteArray)
         {
             Ptr = Marshal.AllocHGlobal(SByteArray.Length + 8);
             Length = SByteArray.Length;
-            Marshal.WriteIntPtr(Ptr, 4, IntPtr.Add(Ptr, 8));
-            Marshal.Copy(SByteArray, 0, IntPtr.Add(Ptr, 8), SByteArray.Length);
+            Marshal.WriteIntPtr(Ptr, 4, Extensions.IntPtr_Add(Ptr, 8));
+            Marshal.Copy(SByteArray, 0, Extensions.IntPtr_Add(Ptr, 8), SByteArray.Length);
         }
         public int Length
         {
@@ -53,13 +53,13 @@ namespace SAE.J2534
             get
             {
                 if (Index >= Length || Index < 0) throw new IndexOutOfRangeException("Index is greater than array bound");
-                return Marshal.ReadByte(IntPtr.Add(Ptr, Index + 8));                
+                return Marshal.ReadByte(Extensions.IntPtr_Add(Ptr, Index + 8));                
             }
         }
         public byte[] ToSByteArray()
         {
             byte[] result = new byte[Length];
-            Marshal.Copy(IntPtr.Add(Ptr, 8), result, 0, result.Length);
+            Marshal.Copy(Extensions.IntPtr_Add(Ptr, 8), result, 0, result.Length);
             return result;
 
         }

@@ -87,21 +87,19 @@ namespace SAE.J2534
             get
             {
                 byte[] data = new byte[Marshal.ReadInt32(Ptr, 16)];
-                Marshal.Copy(IntPtr.Add(Ptr, 24), data, 0, data.Length);
+                Marshal.Copy(Extensions.IntPtr_Add(Ptr, 24), data, 0, data.Length);
                 return data;
             }
             set
             {
-                IntPtr DataPtr = IntPtr.Add(Ptr, 24);  //Offset to data array
-                if (value is byte[])  //Byte[] is fastest
+                IntPtr DataPtr = Extensions.IntPtr_Add(Ptr, 24);  //Offset to data array
+                if (value is byte[] ValueAsArray)  //Byte[] is fastest
                 {
-                    var ValueAsArray = (byte[])value;
                     Length = ValueAsArray.Length;
                     Marshal.Copy(ValueAsArray, 0, DataPtr, ValueAsArray.Length);
                 }
-                else if (value is IList<byte>)   //Collection with indexer is second best
+                else if (value is IList<byte> ValueAsList)   //Collection with indexer is second best
                 {
-                    var ValueAsList = (IList<byte>)value;
                     int length = ValueAsList.Count;
                     Length = length;
                     for (int indexer = 0; indexer < length; indexer++)

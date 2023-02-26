@@ -36,7 +36,7 @@ namespace SAE.J2534
             GenericDescription = this.Result.GetDescription();
             SpecificDescription = Message;
 
-            this.Message = String.IsNullOrWhiteSpace(Message) ? GenericDescription : Message;
+            this.Message = Extensions.IsNullOrWhiteSpace(Message) ? GenericDescription : Message;
         }
     }
 }

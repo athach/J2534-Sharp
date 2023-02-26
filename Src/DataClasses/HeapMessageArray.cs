@@ -41,7 +41,7 @@ namespace SAE.J2534
             if (Length < 1) throw new ArgumentException("Length must be at least 1 (HEAPMessageArray");
             array_max_length = Length;
             LengthPtr = Marshal.AllocHGlobal(CONST.J2534MESSAGESIZE * Length + 4);
-            MessagePtr = IntPtr.Add(LengthPtr, 4);
+            MessagePtr = Extensions.IntPtr_Add(LengthPtr, 4);
             protocolID = (int)ProtocolID;
         }
         public int Length
@@ -71,14 +71,14 @@ namespace SAE.J2534
         }
         private Message getIndex(int index)
         {
-            IntPtr pMessage = IntPtr.Add(MessagePtr, index * CONST.J2534MESSAGESIZE);
+            IntPtr pMessage = Extensions.IntPtr_Add(MessagePtr, index * CONST.J2534MESSAGESIZE);
             return new Message(marshalHeapDataToArray(pMessage),
                                     (RxFlag)Marshal.ReadInt32(pMessage, 4),
                                     (uint)Marshal.ReadInt32(pMessage, 12));
         }
         private void setIndex(int index, Message Message)
         {
-            IntPtr pMessage = IntPtr.Add(MessagePtr, index * CONST.J2534MESSAGESIZE);
+            IntPtr pMessage = Extensions.IntPtr_Add(MessagePtr, index * CONST.J2534MESSAGESIZE);
             Marshal.WriteInt32(pMessage, protocolID);
             Marshal.WriteInt32(pMessage, 8, Message.FlagsAsInt);
             marshalIEnumerableToHeapData(pMessage, Message.Data);
@@ -87,28 +87,26 @@ namespace SAE.J2534
         {
             int Length = Marshal.ReadInt32(pData, 16);
             byte[] data = new byte[Length];
-            Marshal.Copy(IntPtr.Add(pData, 24), data, 0, Length);
+            Marshal.Copy(Extensions.IntPtr_Add(pData, 24), data, 0, Length);
             return data;
         }
         private void marshalIEnumerableToHeapData(IntPtr pMessage, IEnumerable<byte> Data)
         {
-            if (Data is byte[])  //Byte[] is fastest
+            if (Data is byte[] DataAsArray)  //Byte[] is fastest
             {
-                var DataAsArray = (byte[])Data;
                 Marshal.WriteInt32(pMessage, 16, DataAsArray.Length);
-                Marshal.Copy(DataAsArray, 0, IntPtr.Add(pMessage, 24), DataAsArray.Length);
+                Marshal.Copy(DataAsArray, 0, Extensions.IntPtr_Add(pMessage, 24), DataAsArray.Length);
             }
-            else if (Data is ArraySegment<byte>)
+            /*else if (Data is ArraySegment<byte>)
             {
                 var DataAsArraySegment = (ArraySegment<byte>)Data;
                 Marshal.WriteInt32(pMessage, 16, DataAsArraySegment.Count);
-                Marshal.Copy(DataAsArraySegment.Array, DataAsArraySegment.Offset, IntPtr.Add(pMessage, 24), DataAsArraySegment.Count);
-            }
-            else if (Data is IList<byte>)   //Collection with indexer is second best
+                Marshal.Copy(DataAsArraySegment.Array, DataAsArraySegment.Offset, Extensions.IntPtr_Add(pMessage, 24), DataAsArraySegment.Count);
+            }*/
+            else if (Data is IList<byte> DataAsList)   //Collection with indexer is second best
             {
-                var DataAsList = (IList<byte>)Data;
                 int length = DataAsList.Count;
-                IntPtr Ptr = IntPtr.Add(pMessage, 24);  //Offset to data array
+                IntPtr Ptr = Extensions.IntPtr_Add(pMessage, 24);  //Offset to data array
                 Marshal.WriteInt32(pMessage, 16, length);
                 for (int indexer = 0; indexer < length; indexer++)
                 {
@@ -117,7 +115,7 @@ namespace SAE.J2534
             }
             else if (Data is IEnumerable<byte>)    //Enumerator is third
             {
-                IntPtr Ptr = IntPtr.Add(pMessage, 24);  //Offset to data array
+                IntPtr Ptr = Extensions.IntPtr_Add(pMessage, 24);  //Offset to data array
                 int index_count = 0;
                 foreach (byte b in Data)
                 {
@@ -164,7 +162,7 @@ namespace SAE.J2534
             Length = Data.Length;
             for (int i = 0; i < Data.Length; i++)
             {
-                IntPtr pMessage = IntPtr.Add(MessagePtr, i * CONST.J2534MESSAGESIZE);
+                IntPtr pMessage = Extensions.IntPtr_Add(MessagePtr, i * CONST.J2534MESSAGESIZE);
                 Marshal.WriteInt32(pMessage, protocolID);
                 Marshal.WriteInt32(pMessage, 8, (int)TxFlags);
                 marshalIEnumerableToHeapData(pMessage, Data[i]);

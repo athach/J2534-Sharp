@@ -39,7 +39,7 @@ namespace SAE.J2534
             {
                 throw new System.NotImplementedException("J2534 v5 support is not complete!");
             }
-            else if (APISignature.DREWTECH_API.HasFlag(DrewTech_API.GETNEXTCARDAQ))
+            else if ( (APISignature.DREWTECH_API & DrewTech_API.GETNEXTCARDAQ) != 0 )
             {
                 GetNextCarDAQ_RESET();
                 for (GetNextCarDAQResults DrewtechDevice = GetNextCarDAQ();

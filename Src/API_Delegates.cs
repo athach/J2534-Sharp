@@ -95,7 +95,7 @@ namespace SAE.J2534
             IntPtr pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruOpen");
             if (pFunction != IntPtr.Zero)
             {
-                PTOpen = Marshal.GetDelegateForFunctionPointer<PassThruOpen>(pFunction);
+                PTOpen = (PassThruOpen)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruOpen) );
                 APISignature.SAE_API |= SAE_API.OPEN;
             }
             else
@@ -104,7 +104,7 @@ namespace SAE.J2534
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruClose");
             if (pFunction != IntPtr.Zero)
             {
-                PTClose = Marshal.GetDelegateForFunctionPointer<PassThruClose>(pFunction);
+                PTClose = (PassThruClose)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruClose) );
                 APISignature.SAE_API |= SAE_API.CLOSE;
             }
             else
@@ -114,13 +114,13 @@ namespace SAE.J2534
             if (pFunction != IntPtr.Zero)
             {
                 //If the API is v4.04 (because it has 'PassThruOpen')
-                if (APISignature.SAE_API.HasFlag(SAE_API.OPEN))
+                if ( (APISignature.SAE_API & SAE_API.OPEN) != 0)
                     //Make 'Connect' work directly with the library function
-                    PTConnect = Marshal.GetDelegateForFunctionPointer<PassThruConnect>(pFunction);
+                    PTConnect = (PassThruConnect)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruConnect));
                 else
                 {
                     //Otherwise, use the v202 prototype and wrap it with the v404 call
-                    PTConnectv202 = Marshal.GetDelegateForFunctionPointer<PassThruConnectv202>(pFunction);
+                    PTConnectv202 = (PassThruConnectv202)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruConnectv202));
                     PTConnect = Connect_shim;
                 }
                 APISignature.SAE_API |= SAE_API.CONNECT;
@@ -129,49 +129,49 @@ namespace SAE.J2534
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruDisconnect");
             if (pFunction != IntPtr.Zero)
             {
-                PTDisconnect = Marshal.GetDelegateForFunctionPointer<PassThruDisconnect>(pFunction);
+                PTDisconnect = (PassThruDisconnect)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruDisconnect));
                 APISignature.SAE_API |= SAE_API.DISCONNECT;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruReadMsgs");
             if (pFunction != IntPtr.Zero)
             {
-                PTReadMsgs = Marshal.GetDelegateForFunctionPointer<PassThruReadMsgs>(pFunction);
+                PTReadMsgs = (PassThruReadMsgs)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruReadMsgs));
                 APISignature.SAE_API |= SAE_API.READMSGS;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruWriteMsgs");
             if (pFunction != IntPtr.Zero)
             {
-                PTWriteMsgs = Marshal.GetDelegateForFunctionPointer<PassThruWriteMsgs>(pFunction);
+                PTWriteMsgs = (PassThruWriteMsgs)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruWriteMsgs));
                 APISignature.SAE_API |= SAE_API.WRITEMSGS;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruStartPeriodicMsg");
             if (pFunction != IntPtr.Zero)
             {
-                PTStartPeriodicMsg = Marshal.GetDelegateForFunctionPointer<PassThruStartPeriodicMsg>(pFunction);
+                PTStartPeriodicMsg = (PassThruStartPeriodicMsg)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruStartPeriodicMsg));
                 APISignature.SAE_API |= SAE_API.STARTPERIODICMSG;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruStopPeriodicMsg");
             if (pFunction != IntPtr.Zero)
             {
-                PTStopPeriodicMsg = Marshal.GetDelegateForFunctionPointer<PassThruStopPeriodicMsg>(pFunction);
+                PTStopPeriodicMsg = (PassThruStopPeriodicMsg)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruStopPeriodicMsg));
                 APISignature.SAE_API |= SAE_API.STOPPERIODICMSG;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruStartMsgFilter");
             if (pFunction != IntPtr.Zero)
             {
-                PTStartMsgFilter = Marshal.GetDelegateForFunctionPointer<PassThruStartMsgFilter>(pFunction);
+                PTStartMsgFilter = (PassThruStartMsgFilter)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruStartMsgFilter));
                 APISignature.SAE_API |= SAE_API.STARTMSGFILTER;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruStopMsgFilter");
             if (pFunction != IntPtr.Zero)
             {
-                PTStopMsgFilter = Marshal.GetDelegateForFunctionPointer<PassThruStopMsgFilter>(pFunction);
+                PTStopMsgFilter = (PassThruStopMsgFilter)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruStopMsgFilter));
                 APISignature.SAE_API |= SAE_API.STOPMSGFILTER;
             }
 
@@ -179,13 +179,13 @@ namespace SAE.J2534
             if (pFunction != IntPtr.Zero)
             {
                 //If the API is v4.04 (because it has 'PassThruOpen')
-                if (APISignature.SAE_API.HasFlag(SAE_API.OPEN))
+                if ( (APISignature.SAE_API & SAE_API.OPEN) != 0 )
                     //Make 'Connect' work directly with the library function
-                    PTSetProgrammingVoltage = Marshal.GetDelegateForFunctionPointer<PassThruSetProgrammingVoltage>(pFunction);
+                    PTSetProgrammingVoltage = (PassThruSetProgrammingVoltage)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruSetProgrammingVoltage));
                 else
                 {
                     //Otherwise, use the v202 prototype and wrap it with the v404 call
-                    PTSetProgrammingVoltagev202 = Marshal.GetDelegateForFunctionPointer<PassThruSetProgrammingVoltagev202>(pFunction);
+                    PTSetProgrammingVoltagev202 = (PassThruSetProgrammingVoltagev202)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruSetProgrammingVoltagev202));
                     PTSetProgrammingVoltage = SetVoltage_shim;
                 }
                 APISignature.SAE_API |= SAE_API.SETPROGRAMMINGVOLTAGE;
@@ -195,13 +195,13 @@ namespace SAE.J2534
             if (pFunction != IntPtr.Zero)
             {
                 //If the API is v4.04 (because it has 'PassThruOpen')
-                if (APISignature.SAE_API.HasFlag(SAE_API.OPEN))
+                if ( (APISignature.SAE_API & SAE_API.OPEN) != 0 )
                     //Make 'Connect' work directly with the library function
-                    PTReadVersion = Marshal.GetDelegateForFunctionPointer<PassThruReadVersion>(pFunction);
+                    PTReadVersion = (PassThruReadVersion)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruReadVersion));
                 else
                 {
                     //Otherwise, use the v202 prototype and wrap it with the v404 call
-                    PTReadVersionv202 = Marshal.GetDelegateForFunctionPointer<PassThruReadVersionv202>(pFunction);
+                    PTReadVersionv202 = (PassThruReadVersionv202)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruReadVersionv202));
                     PTReadVersion = ReadVersion_shim;
                 }
                 APISignature.SAE_API |= SAE_API.READVERSION;
@@ -210,14 +210,14 @@ namespace SAE.J2534
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruGetLastError");
             if (pFunction != IntPtr.Zero)
             {
-                PTGetLastError = Marshal.GetDelegateForFunctionPointer<PassThruGetLastError>(pFunction);
+                PTGetLastError = (PassThruGetLastError)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruGetLastError));
                 APISignature.SAE_API |= SAE_API.GETLASTERROR;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruIoctl");
             if (pFunction != IntPtr.Zero)
             {
-                PTIoctl = Marshal.GetDelegateForFunctionPointer<PassThruIoctl>(pFunction);
+                PTIoctl = (PassThruIoctl)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruIoctl));
                 APISignature.SAE_API |= SAE_API.IOCTL;
             }
 
@@ -225,49 +225,49 @@ namespace SAE.J2534
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruScanForDevices");
             if (pFunction != IntPtr.Zero)
             {
-                PTScanForDevices = Marshal.GetDelegateForFunctionPointer<PassThruScanForDevices>(pFunction);
+                PTScanForDevices = (PassThruScanForDevices)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruScanForDevices));
                 APISignature.SAE_API |= SAE_API.SCANFORDEVICES;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruGetNextDevice");
             if (pFunction != IntPtr.Zero)
             {
-                PTGetNextDevice = Marshal.GetDelegateForFunctionPointer<PassThruGetNextDevice>(pFunction);
+                PTGetNextDevice = (PassThruGetNextDevice)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruGetNextDevice));
                 APISignature.SAE_API |= SAE_API.GETNEXTDEVICE;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruLogicalConnect");
             if (pFunction != IntPtr.Zero)
             {
-                PTLogicalConnect = Marshal.GetDelegateForFunctionPointer<PassThruLogicalConnect>(pFunction);
+                PTLogicalConnect = (PassThruLogicalConnect)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruLogicalConnect));
                 APISignature.SAE_API |= SAE_API.LOGICALCONNECT;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruLogicalDisconnect");
             if (pFunction != IntPtr.Zero)
             {
-                PTLogicalDisconnect = Marshal.GetDelegateForFunctionPointer<PassThruLogicalDisconnect>(pFunction);
+                PTLogicalDisconnect = (PassThruLogicalDisconnect)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruLogicalDisconnect));
                 APISignature.SAE_API |= SAE_API.LOGICALDISCONNECT;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruSelect");
             if (pFunction != IntPtr.Zero)
             {
-                PTSelect = Marshal.GetDelegateForFunctionPointer<PassThruSelect>(pFunction);
+                PTSelect = (PassThruSelect)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruSelect));
                 APISignature.SAE_API |= SAE_API.SELECT;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruQueueMsgs");
             if (pFunction != IntPtr.Zero)
             {
-                PTQueueMsgs = Marshal.GetDelegateForFunctionPointer<PassThruQueueMsgs>(pFunction);
+                PTQueueMsgs = (PassThruQueueMsgs)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruQueueMsgs));
                 APISignature.SAE_API |= SAE_API.QUEUEMESSAGES;
             }
 
             pFunction = Kernal32.GetProcAddress(pLibrary, "PassThruGetNextCarDAQ");
             if (pFunction != IntPtr.Zero)
             {
-                PTGetNextCarDAQ = Marshal.GetDelegateForFunctionPointer<PassThruGetNextCarDAQ>(pFunction);
+                PTGetNextCarDAQ = (PassThruGetNextCarDAQ)Marshal.GetDelegateForFunctionPointer(pFunction, typeof(PassThruGetNextCarDAQ));
                 APISignature.DREWTECH_API |= DrewTech_API.GETNEXTCARDAQ;
             }
 

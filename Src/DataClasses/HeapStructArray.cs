@@ -35,7 +35,7 @@ namespace SAE.J2534
             elementSize = Marshal.SizeOf(typeof(T));
             //Create a blob big enough for all elements and two longs (NumOfItems and pItems)
             Ptr = Marshal.AllocHGlobal(Length * elementSize + 8);
-            firstElementPtr = IntPtr.Add(Ptr, 8);
+            firstElementPtr = Extensions.IntPtr_Add(Ptr, 8);
             this.Length = Length;
             //Write pItems.  To save complexity, the array immediately follows SConfigArray.
             Marshal.WriteIntPtr(Ptr, 4, firstElementPtr);
@@ -70,11 +70,11 @@ namespace SAE.J2534
         }
         private T getIndex(int Index)
         {
-            return Marshal.PtrToStructure<T>(IntPtr.Add(firstElementPtr, Index * elementSize));
+            return (T)Marshal.PtrToStructure(Extensions.IntPtr_Add(firstElementPtr, Index * elementSize), typeof(T));
         }
         private void setIndex(int Index, T Element)
         {
-            Marshal.StructureToPtr<T>(Element, IntPtr.Add(firstElementPtr, Index * elementSize), false);
+            Marshal.StructureToPtr(Element, Extensions.IntPtr_Add(firstElementPtr, Index * elementSize), false);
         }
         public T[] ToArray()
         {
