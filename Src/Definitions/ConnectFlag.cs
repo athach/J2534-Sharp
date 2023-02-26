@@ -50,15 +50,43 @@ namespace SAE.J2534
 {
     [Flags]
     public enum ConnectFlag
-    {
-        NONE = 0x0000,
-        CAN_29BIT_ID = 0x0100,
-        ISO9141_NO_CHECKSUM = 0x0200,
-        CAN_ID_BOTH = 0x0800,
-        ISO9141_K_LINE_ONLY = 0x1000,
-        DT_ISO9141_LISTEN_L_LINE = 0x08000000,
-        SNIFF_MODE = 0x10000000,                    //Drewtech only
-        ISO9141_FORD_HEADER = 0x20000000,           //Drewtech only
-        ISO9141_NO_CHECKSUM_DT = 0x40000000         //Drewtech only
+    {        
+        /// <summary>
+        /// No flag
+        /// </summary>
+        NONE                        = 0x0000,
+        
+        /// <summary>
+        /// CAN ID type for CAN and ISO 15765 (also see CAN_ID_BOTH)
+        /// <para>0 = Receive standard CAN ID (11 bit)</para>
+        /// <para>1 = Receive extended CAN ID (29 bit)</para>
+        /// </summary>
+        CAN_29BIT_ID                = 0x0100,
+        
+        /// <summary>
+        /// Checksum control for ISO9141 and ISO14230
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        ISO9141_NO_CHECKSUM         = 0x0200,
+        
+        /// <summary>
+        /// CAN ID support type for CAN and ISO 15765 (also see CAN_29BIT_ID)
+        /// <para>0 = either standard or extended CAN ID types used – CAN ID type defined by CAN_29BIT_ID</para>
+        /// <para>1 = both standard and extended CAN ID types used – if the CAN controller allows prioritizing either standard (11 bit) or extended (29 bit) CAN ID's then CAN_29BIT_ID will determine the higher priority ID type</para>
+        /// </summary>
+        CAN_ID_BOTH                 = 0x0800,
+        
+        /// <summary>
+        /// L line usage for ISO9141 and ISO14230 Initialization address
+        /// <para>0 = use L-line and K-line for initialization address</para>
+        /// <para>1 = use K-line only line for initialization address</para>
+        /// </summary>
+        ISO9141_K_LINE_ONLY         = 0x1000,
+        
+        DT_ISO9141_LISTEN_L_LINE    = 0x08000000,
+        SNIFF_MODE                  = 0x10000000,       //Drewtech only
+        ISO9141_FORD_HEADER         = 0x20000000,       //Drewtech only
+        ISO9141_NO_CHECKSUM_DT      = 0x40000000        //Drewtech only
     }
 }
